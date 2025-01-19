@@ -10,8 +10,12 @@ func _physics_process(delta):
 				target_enemy = enemy
 		look_at(target_enemy)
 		
-		
 func position_from_array(enemy):
 	return enemy.global_position
 
-#Mardo arrumou o codigo da vaca
+func shoot():
+	const BULLET = preload("res://SCENES/milk.tscn")
+	var new_bullet = BULLET.instantiate()
+	new_bullet.global_position = $"..".global_position
+	new_bullet.global_rotation = $"..".global_rotation
+	$"..".add_child(new_bullet)	

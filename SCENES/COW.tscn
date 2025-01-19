@@ -18,8 +18,8 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_vgsgx")
 
 [node name="CowPlaceholder" type="Sprite2D" parent="."]
-position = Vector2(1, -17)
-scale = Vector2(0.551389, 0.565527)
+position = Vector2(4, -11)
+scale = Vector2(0.450174, 0.488746)
 texture = ExtResource("2_tr1bc")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -27,4 +27,12 @@ scale = Vector2(1, 1)
 script = ExtResource("3_c00uv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(-1, 1.90735e-06)
 shape = SubResource("CircleShape2D_8k3pb")
+disabled = true
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-33, 20)
+scale = Vector2(1, 1)
