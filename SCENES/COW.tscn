@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqrljrj5s0yy6"]
+
+[ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
+[ext_resource type="Texture2D" uid="uid://ckrhb3tijm4xb" path="res://ASSETS/cow_placeholder.png" id="2_tr1bc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgsgx"]
+size = Vector2(113, 115)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ulg0c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_vgsgx")
+
+[node name="CowPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(1, -17)
+scale = Vector2(0.551389, 0.565527)
+texture = ExtResource("2_tr1bc")

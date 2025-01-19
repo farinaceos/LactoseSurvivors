@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://kcl4efkvrany"]
+
+[ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_wp1di"]
+
+[node name="Impact" type="Node2D"]
+top_level = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_wp1di")
