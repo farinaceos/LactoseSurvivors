@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqrljrj5s0yy6"]
+[gd_scene load_steps=6 format=3 uid="uid://bqrljrj5s0yy6"]
 
 [ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
 [ext_resource type="Texture2D" uid="uid://ckrhb3tijm4xb" path="res://ASSETS/cow_placeholder.png" id="2_tr1bc"]
+[ext_resource type="Script" path="res://SCRIPTS/area_2d.gd" id="3_c00uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgsgx"]
 size = Vector2(113, 115)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8k3pb"]
+radius = 404.317
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ulg0c")
@@ -17,3 +21,10 @@ shape = SubResource("RectangleShape2D_vgsgx")
 position = Vector2(1, -17)
 scale = Vector2(0.551389, 0.565527)
 texture = ExtResource("2_tr1bc")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+script = ExtResource("3_c00uv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8k3pb")
