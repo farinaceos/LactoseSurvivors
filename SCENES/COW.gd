@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var CowPlaceholder = $CowPlaceholder
+@onready var vaca = $AnimatedSprite2D
 @onready var _Area2D = $Area2D
 
 var max_health = 100.0
@@ -13,9 +13,9 @@ func _physics_process(delta):
 	move_and_slide()
 		# Flip the Sprite
 	if direction[0] > 0:
-		CowPlaceholder.flip_h = true
+		vaca.flip_h = true
 	elif direction[0] < 0:
-		CowPlaceholder.flip_h = false
+		vaca.flip_h = false
 
 func _on_spawn_timer_timeout():
 	_Area2D.shoot()

@@ -11,7 +11,7 @@ script = ExtResource("1_suo8h")
 script = ExtResource("1_71s0l")
 
 [node name="Player" parent="." instance=ExtResource("2_rwtxa")]
-position = Vector2(573, 337)
+position = Vector2(566, 333)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
