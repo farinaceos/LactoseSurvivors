@@ -1,16 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqrljrj5s0yy6"]
+[gd_scene load_steps=13 format=3 uid="uid://bqrljrj5s0yy6"]
 
 [ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
 [ext_resource type="Texture2D" uid="uid://5jpjnl3v5bfr" path="res://ASSETS/COW/IMG_0017.PNG" id="2_cb8hi"]
+[ext_resource type="Texture2D" uid="uid://bbfiq7gyg45v5" path="res://ASSETS/COW/Costas agachado.PNG" id="2_iishf"]
 [ext_resource type="Script" path="res://SCRIPTS/area_2d.gd" id="3_c00uv"]
+[ext_resource type="Texture2D" uid="uid://d2ek8u2f2be2r" path="res://ASSETS/COW/Costas parado.PNG" id="3_jspog"]
 [ext_resource type="Texture2D" uid="uid://bk3x3knec5jrb" path="res://ASSETS/COW/Direita.PNG" id="3_m8ctc"]
+[ext_resource type="Texture2D" uid="uid://xss3a0vyio4j" path="res://ASSETS/COW/Agachada.png" id="4_dc6m3"]
 [ext_resource type="Texture2D" uid="uid://cagb224du4wg3" path="res://ASSETS/COW/Esquerda.PNG" id="4_jw26h"]
+[ext_resource type="Texture2D" uid="uid://dr8m5fvptc13e" path="res://ASSETS/COW/Parada.PNG" id="5_1q85o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dngp8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_cb8hi")
+"texture": ExtResource("2_iishf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jspog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jspog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_iishf")
+}],
+"loop": true,
+"name": &"BACK_IDLE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc6m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dc6m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1q85o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1q85o")
 }],
 "loop": true,
 "name": &"IDLE",
@@ -29,10 +59,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_m8ctc")
+"texture": ExtResource("4_dc6m3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_cb8hi")
+"texture": ExtResource("3_m8ctc")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_jw26h")
@@ -52,13 +82,15 @@ radius = 404.317
 script = ExtResource("1_ulg0c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1.5, -14.5)
+position = Vector2(135, 124)
 scale = Vector2(0.0743333, 0.0743333)
 sprite_frames = SubResource("SpriteFrames_dngp8")
-animation = &"WALKING"
-frame_progress = 0.341145
+animation = &"IDLE"
+autoplay = "IDLE"
+frame_progress = 0.94975
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, -3)
 shape = SubResource("RectangleShape2D_vgsgx")
 

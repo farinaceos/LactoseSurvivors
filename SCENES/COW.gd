@@ -13,9 +13,20 @@ func _physics_process(delta):
 	move_and_slide()
 		# Flip the Sprite
 	if direction[0] > 0:
-		vaca.flip_h = true
-	elif direction[0] < 0:
 		vaca.flip_h = false
-
+	elif direction[0] < 0:
+		vaca.flip_h = true
+	# Not working the Back Idle animation - Work on it!!!
+	if direction[1] > 1:
+		vaca.animation = 'BACK_IDLE'
+		
+	# These Animations are fine!
+	elif direction[0] == 0 and direction[1] == 0:
+		vaca.animation = 'IMPATIENT'
+	elif direction[0] != 0:
+		vaca.animation = 'WALKING'
+		
+		
+	# Shoot is still coming from a weird place, gotta solve this ASAP
 func _on_spawn_timer_timeout():
 	_Area2D.shoot()
