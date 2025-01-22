@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqrljrj5s0yy6"]
+[gd_scene load_steps=11 format=3 uid="uid://bqrljrj5s0yy6"]
 
 [ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
 [ext_resource type="Texture2D" uid="uid://5jpjnl3v5bfr" path="res://ASSETS/COW/IMG_0017.PNG" id="2_cb8hi"]
 [ext_resource type="Texture2D" uid="uid://bbfiq7gyg45v5" path="res://ASSETS/COW/Costas agachado.PNG" id="2_iishf"]
-[ext_resource type="Script" path="res://SCRIPTS/area_2d.gd" id="3_c00uv"]
 [ext_resource type="Texture2D" uid="uid://d2ek8u2f2be2r" path="res://ASSETS/COW/Costas parado.PNG" id="3_jspog"]
 [ext_resource type="Texture2D" uid="uid://bk3x3knec5jrb" path="res://ASSETS/COW/Direita.PNG" id="3_m8ctc"]
 [ext_resource type="Texture2D" uid="uid://xss3a0vyio4j" path="res://ASSETS/COW/Agachada.png" id="4_dc6m3"]
@@ -73,36 +72,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgsgx"]
-size = Vector2(115, 173)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8k3pb"]
-radius = 404.317
+size = Vector2(112.5, 177.5)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ulg0c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(135, 124)
+position = Vector2(-2, -16)
 scale = Vector2(0.0743333, 0.0743333)
 sprite_frames = SubResource("SpriteFrames_dngp8")
 animation = &"IDLE"
 autoplay = "IDLE"
-frame_progress = 0.94975
+
+[node name="SHOOTING_POINT" type="Marker2D" parent="AnimatedSprite2D"]
+position = Vector2(766.816, 524.664)
+scale = Vector2(13.4529, 13.4529)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2, -3)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_vgsgx")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-2.5, -2.5)
-script = ExtResource("3_c00uv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(-1, 1.90735e-06)
-shape = SubResource("CircleShape2D_8k3pb")
-disabled = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
+position = Vector2(-3, 1)

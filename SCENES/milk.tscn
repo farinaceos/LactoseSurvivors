@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dftkbqwsfd68r" path="res://ASSETS/pistol/projectile.png" id="1_u58uv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwgck"]
-radius = 12.0
+radius = 88.0
 
 [node name="Area2D" type="Area2D"]
 position = Vector2(-11, 2)
@@ -12,8 +12,10 @@ script = ExtResource("1_b2mj6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(100, 100, 100, 1)
+position = Vector2(144.643, 81)
+scale = Vector2(6.78571, 6.78571)
 texture = ExtResource("1_u58uv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(216, 88)
 shape = SubResource("CircleShape2D_dwgck")
