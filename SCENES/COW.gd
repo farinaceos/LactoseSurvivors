@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 @onready var vaca = $AnimatedSprite2D
-@onready var _Area2D = $Area2D
+
+
+var idle_timer = 5
+var timerToImpatient = 0
 
 var max_health = 100.0
 var health = max_health
@@ -16,17 +19,20 @@ func _physics_process(delta):
 		vaca.flip_h = false
 	elif direction[0] < 0:
 		vaca.flip_h = true
-	# Not working the Back Idle animation - Work on it!!!
-	if direction[1] > 1:
-		vaca.animation = 'BACK_IDLE'
 		
-	# These Animations are fine!
-	elif direction[0] == 0 and direction[1] == 0:
-		vaca.animation = 'IMPATIENT'
-	elif direction[0] != 0:
+	# PLAY THE CORRECT ANIMATION	
+	if direction[1] < 0:
+		vaca.animation = 'BACK_WALK'
+		# timerToImpatient = 0 # -> TO IMPATIENT
+	if velocity.length() > 0.0 and direction[1] >= 0:
 		vaca.animation = 'WALKING'
-		
-		
-	# Shoot is still coming from a weird place, gotta solve this ASAP
-func _on_spawn_timer_timeout():
-	_Area2D.shoot()
+		# timerToImpatient = 0 # -> TO IMPATIENT
+	elif velocity.length() == 0.0:
+		vaca.animation = 'IDLE'
+		# timerToImpatient += delta # -> TO IMPATIENT
+
+# NOT WORKING IMPATIENT ANIMATION
+# WILL COME BACK IN THE FUTURE IF HAVE TIME
+#	if timerToImpatient >= idle_timer and direction[0] == 0 and direction[1] == 0:
+#		vaca.animation = 'IMPATIENT'
+			
