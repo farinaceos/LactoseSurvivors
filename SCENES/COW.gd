@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var vaca = $AnimatedSprite2D
 
 
-var idle_timer = 5
-var timerToImpatient = 0
+# var idle_timer = 5
+# var timerToImpatient = 0
 
 var max_health = 100.0
 var health = max_health
