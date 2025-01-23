@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var vaca = $AnimatedSprite2D
-@onready var shoot_marker = $AnimatedSprite2D/SHOOTING_POINT
+@onready var shoot_marker = $SHOOTING_AUX
 
 var max_health = 100.0
 var health = max_health
@@ -29,7 +29,7 @@ func _physics_process(delta):
 		facing_direction = Vector2.UP
 
 	# Update animations
-	if direction.y > 0:
+	if direction.y < 0:
 		vaca.animation = 'BACK_IDLE'
 	elif direction == Vector2.ZERO:
 		vaca.animation = 'IMPATIENT'
@@ -44,7 +44,7 @@ func _physics_process(delta):
 func shoot():
 	const BULLET = preload("res://SCENES/milk.tscn")
 	var new_bullet = BULLET.instantiate()
-	new_bullet.global_position = global_position
+	new_bullet.global_position = shoot_marker.global_position
 	new_bullet.global_rotation = facing_direction.angle()
 	new_bullet.direction = facing_direction
 	vaca.add_child(new_bullet)	

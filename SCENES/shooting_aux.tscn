@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c37evdrrbd8bq"]
+
+[node name="SHOOTING_AUX" type="Node2D"]
+
+[node name="SHOOTING_MARKER" type="Marker2D" parent="."]
