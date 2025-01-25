@@ -1,25 +1,79 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsy5q0mcw1b7i"]
+[gd_scene load_steps=6 format=3 uid="uid://bsy5q0mcw1b7i"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GAME_MANAGER.gd" id="1_71s0l"]
 [ext_resource type="Script" path="res://SCRIPTS/game.gd" id="1_suo8h"]
 [ext_resource type="PackedScene" uid="uid://bqrljrj5s0yy6" path="res://SCENES/COW.tscn" id="2_rwtxa"]
-[ext_resource type="Texture2D" uid="uid://b68fxlf4m5sc6" path="res://icon.svg" id="4_2fupe"]
+[ext_resource type="Texture2D" uid="uid://db1gr6l1ma0kb" path="res://ASSETS/GRASS/grmaa.png" id="5_1aaio"]
+
+[sub_resource type="Curve2D" id="Curve2D_y6k7m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -153, -175, 0, 0, 0, 0, 1398, -175, 0, 0, 0, 0, 1392, 795, 0, 0, 0, 0, -151, 811, 0, 0, 0, 0, -153, -175)
+}
+point_count = 5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_suo8h")
 
-[node name="Game Manager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_71s0l")
-
-[node name="Player" parent="." instance=ExtResource("2_rwtxa")]
-position = Vector2(575, 324)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(910, 355)
-texture = ExtResource("4_2fupe")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -85.0
+offset_top = -99.0
+offset_right = 1260.0
+offset_bottom = 737.0
+color = Color(0.305882, 0.568627, 0.243137, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_rwtxa")]
+position = Vector2(575, 324)
+
+[node name="Grmaa" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(74, 548)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_1aaio")
+
+[node name="Grmaa2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(483, 481)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_1aaio")
+
+[node name="Grmaa3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(169, 277)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_1aaio")
+
+[node name="Grmaa4" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(710, 187)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_1aaio")
+
+[node name="Grmaa5" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1000, 578)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_1aaio")
+
+[node name="Grmaa6" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1061, 194)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("5_1aaio")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_y6k7m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-152.255, -175)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="Player" method="_on_spawn_timer_timeout"]

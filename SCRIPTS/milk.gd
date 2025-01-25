@@ -13,7 +13,7 @@ extends Area2D
 #		queue_free()
 
 var direction = Vector2.RIGHT  # Default direction
-const SPEED = 2000
+const SPEED = 700
 const RANGE = 5000
 
 var travelled_distance = 0
@@ -31,8 +31,4 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	queue_free()
 	if body.has_method("take_damage"):
-		const IMPACT = preload("res://ASSETS/pistol/impact/impact.tscn")
-		var poof = IMPACT.instantiate()
-		body.add_child(poof)
-		poof.global_position = body.global_position
 		body.take_damage()

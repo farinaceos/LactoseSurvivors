@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqrljrj5s0yy6"]
+[gd_scene load_steps=14 format=3 uid="uid://bqrljrj5s0yy6"]
 
 [ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
 [ext_resource type="Texture2D" uid="uid://5jpjnl3v5bfr" path="res://ASSETS/COW/IMG_0017.PNG" id="2_cb8hi"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://xss3a0vyio4j" path="res://ASSETS/COW/Agachada.png" id="4_dc6m3"]
 [ext_resource type="Texture2D" uid="uid://cagb224du4wg3" path="res://ASSETS/COW/Esquerda.PNG" id="4_jw26h"]
 [ext_resource type="Texture2D" uid="uid://dr8m5fvptc13e" path="res://ASSETS/COW/Parada.PNG" id="5_1q85o"]
+[ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="9_5ci8t"]
 [ext_resource type="PackedScene" uid="uid://c37evdrrbd8bq" path="res://SCENES/shooting_aux.tscn" id="9_n4u0w"]
+[ext_resource type="Script" path="res://SCRIPTS/score.gd" id="10_xiimg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dngp8"]
 animations = [{
@@ -73,24 +75,41 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgsgx"]
-size = Vector2(112.5, 177.5)
+size = Vector2(54, 90)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_ulg0c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, -16)
-scale = Vector2(0.0743333, 0.0743333)
+position = Vector2(-4.54747e-13, 2)
+scale = Vector2(0.0395, 0.0395)
 sprite_frames = SubResource("SpriteFrames_dngp8")
 animation = &"IDLE"
 autoplay = "IDLE"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+light_mask = 0
+position = Vector2(-1, 8)
 shape = SubResource("RectangleShape2D_vgsgx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-3, 1)
+zoom = Vector2(1.02, 1.02)
+
+[node name="Score" type="Label" parent="Camera2D"]
+unique_name_in_owner = true
+offset_left = -539.0
+offset_top = -288.0
+offset_right = -171.0
+offset_bottom = -197.0
+theme_override_fonts/font = ExtResource("9_5ci8t")
+theme_override_font_sizes/font_size = 37
+text = "% Points"
+uppercase = true
+script = ExtResource("10_xiimg")
 
 [node name="SHOOTING_AUX" parent="." instance=ExtResource("9_n4u0w")]
-position = Vector2(55, 25)
+position = Vector2(-32, 23)

@@ -3,3 +3,5 @@
 [node name="SHOOTING_AUX" type="Node2D"]
 
 [node name="SHOOTING_MARKER" type="Marker2D" parent="."]
+unique_name_in_owner = true
+gizmo_extents = 7.5
