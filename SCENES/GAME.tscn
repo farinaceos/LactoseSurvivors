@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsy5q0mcw1b7i"]
+[gd_scene load_steps=7 format=3 uid="uid://bsy5q0mcw1b7i"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GAME_MANAGER.gd" id="1_71s0l"]
 [ext_resource type="Script" path="res://SCRIPTS/game.gd" id="1_suo8h"]
 [ext_resource type="PackedScene" uid="uid://bqrljrj5s0yy6" path="res://SCENES/COW.tscn" id="2_rwtxa"]
-[ext_resource type="Texture2D" uid="uid://db1gr6l1ma0kb" path="res://ASSETS/GRASS/grmaa.png" id="5_1aaio"]
+[ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="4_f1ine"]
+[ext_resource type="Script" path="res://SCENES/Endscore.gd" id="5_467qx"]
 
 [sub_resource type="Curve2D" id="Curve2D_y6k7m"]
 _data = {
@@ -33,47 +34,73 @@ color = Color(0.305882, 0.568627, 0.243137, 1)
 [node name="Player" parent="." instance=ExtResource("2_rwtxa")]
 position = Vector2(575, 324)
 
-[node name="Grmaa" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(74, 548)
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_1aaio")
-
-[node name="Grmaa2" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(483, 481)
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_1aaio")
-
-[node name="Grmaa3" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(169, 277)
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_1aaio")
-
-[node name="Grmaa4" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(710, 187)
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_1aaio")
-
-[node name="Grmaa5" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(1000, 578)
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_1aaio")
-
-[node name="Grmaa6" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(1061, 194)
-scale = Vector2(0.305, 0.305)
-texture = ExtResource("5_1aaio")
-
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-575, -324)
 curve = SubResource("Curve2D_y6k7m")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-152.255, -175)
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-153, -175)
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+offset_left = -90.0
+offset_top = -94.0
+offset_right = 1259.0
+offset_bottom = 734.0
+color = Color(0.211765, 0.203922, 0.188235, 0.686275)
+
+[node name="GameOver" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 0
+offset_left = -95.0
+offset_top = 175.0
+offset_right = 1466.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 101
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 485.0
+offset_right = 613.0
+offset_bottom = 647.0
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 51
+text = "YOU SCORED
+%%%
+POINTS"
+script = ExtResource("5_467qx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
+layout_mode = 0
+offset_left = 953.0
+offset_top = 625.0
+offset_right = 1235.0
+offset_bottom = 742.0
+alignment = 1
+
+[node name="RESTART" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "RESTART"
+
+[node name="QUIT" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "QUIT"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="Player" method="_on_spawn_timer_timeout"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/QUIT" to="." method="_on_quit_pressed"]

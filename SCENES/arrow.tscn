@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmti071hujyt8"]
+
+[ext_resource type="Script" path="res://SCRIPTS/arrow.gd" id="1_04g04"]
+[ext_resource type="Texture2D" uid="uid://b4cxntxqkrv5y" path="res://ASSETS/ARROW/Sprite-0001.png" id="2_16awl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qslvo"]
+radius = 941.55
+
+[node name="Arrow" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_04g04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_qslvo")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+position = Vector2(98, 0)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("2_16awl")

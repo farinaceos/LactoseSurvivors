@@ -4,13 +4,18 @@ extends CharacterBody2D
 @onready var shoot_marker = $SHOOTING_AUX
 @onready var GameManager = $"res://SCRIPTS/GAME_MANAGER.gd"
 
+const MILK_COST = 4
 var max_health = 100.0
 var health = max_health
 const SPEED = 300
-var facing_direction = Vector2.RIGHT  # Default facing direction
-
+var facing_direction = Vector2.LEFT  # Default facing direction
+signal health_depleted
 # Trying this function to make the shoot go to the specified direction
 func _physics_process(delta):
+	%ProgressBar.value = health
+	%ProgressBar.max_value = max_health
+	
+	
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * SPEED
 	move_and_slide()
@@ -31,20 +36,35 @@ func _physics_process(delta):
 
 	# Update animations
 	if direction.y < 0:
-		vaca.animation = 'BACK_IDLE'
+		if health < 30:
+			vaca.animation = 'LOW_BACK'
+		else:
+			vaca.animation = 'BACK_IDLE'
 	elif direction == Vector2.ZERO:
-		vaca.animation = 'IMPATIENT'
+		if health < 30:
+			vaca.animation = 'LOW_IMPAT'
+		else:
+			vaca.animation = 'IMPATIENT'
 	elif direction.x != 0 or direction.y != 0:
-		vaca.animation = 'WALKING'
-
-		
+		if health < 30:
+			vaca.animation = 'LOW_HEALTH'
+		else:	
+			vaca.animation = 'WALKING'
+	
+	if health <= 0.0:
+		health_depleted.emit()
+	
 	if Input.is_action_just_pressed("SHOOT"):
 		print('atirei')
 		shoot()
 		
+			
+
+
 func shoot():
 	const BULLET = preload("res://SCENES/milk.tscn")
 	var new_bullet = BULLET.instantiate()
+	health -= MILK_COST
 	new_bullet.global_position = shoot_marker.global_position
 	new_bullet.global_rotation = facing_direction.angle()
 	new_bullet.direction = facing_direction

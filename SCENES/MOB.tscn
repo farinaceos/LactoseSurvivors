@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cntq3ra3cx88h"]
+[gd_scene load_steps=12 format=3 uid="uid://cntq3ra3cx88h"]
 
 [ext_resource type="Script" path="res://SCRIPTS/mob.gd" id="1_psp1h"]
 [ext_resource type="Texture2D" uid="uid://dwinh0mvytgqd" path="res://ASSETS/MOB/IMG_0037.PNG" id="2_j5kam"]
@@ -68,7 +68,12 @@ animations = [{
 radius = 19.0
 height = 116.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqfry"]
+radius = 391.216
+
 [node name="Mob" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_psp1h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -85,5 +90,14 @@ light_mask = 2
 position = Vector2(3, 15)
 shape = SubResource("CapsuleShape2D_rp5yf")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uqfry")
+
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
