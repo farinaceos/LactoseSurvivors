@@ -240,6 +240,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ahmw8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b1qa7")
 step = 1.0
 value = 100.0
+allow_greater = true
 allow_lesser = true
 
 [node name="Arrow" parent="." instance=ExtResource("12_y08n8")]

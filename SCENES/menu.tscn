@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://jsqltluk8kt3"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_fejqv"]
+[ext_resource type="Texture2D" uid="uid://pr5ru3upcnvs" path="res://ASSETS/COW/HICOWRI.PNG" id="2_uvrlu"]
+[ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="3_er7i2"]
+[ext_resource type="FontFile" uid="uid://cnhcrcpgqgrq0" path="res://ASSETS/fonts/PixelOperator8.ttf" id="4_hh6jr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tccqr"]
+atlas = ExtResource("2_uvrlu")
+region = Rect2(6, 2000, 498, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q3nq"]
+atlas = ExtResource("2_uvrlu")
+region = Rect2(1500, 2000, 498, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7yle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tccqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q3nq")
+}],
+"loop": true,
+"name": &"1",
+"speed": 2.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fejqv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0291649, 0.251366, 0.152611, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(186, 190)
+scale = Vector2(0.551, 0.551)
+sprite_frames = SubResource("SpriteFrames_g7yle")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.739475
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(987, 190)
+scale = Vector2(0.551, 0.551)
+sprite_frames = SubResource("SpriteFrames_g7yle")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.636868
+flip_h = true
+
+[node name="Lactose" type="Label" parent="."]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 83.0
+offset_right = 853.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("3_er7i2")
+theme_override_font_sizes/font_size = 76
+text = "LACTOSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Fighters" type="Label" parent="Lactose"]
+offset_left = 34.0
+offset_top = 94.0
+offset_right = 504.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("3_er7i2")
+theme_override_font_sizes/font_size = 61
+text = "Fighters"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 328.0
+offset_right = 743.0
+offset_bottom = 563.0
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_er7i2")
+theme_override_font_sizes/font_size = 51
+text = "START"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_er7i2")
+theme_override_font_sizes/font_size = 51
+text = "QUIT"
+
+[node name="Assinatura" type="Label" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 584.0
+offset_right = 1144.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("4_hh6jr")
+text = "Game by Farinaceos - 2025
+for the 1st 2025 PirateSoftware Itch.io Gamejam
+Art and sprites by @mary.gats"
+
+[node name="Assinatura2" type="Label" parent="."]
+offset_left = 49.0
+offset_top = 348.0
+offset_right = 442.0
+offset_bottom = 566.0
+theme_override_fonts/font = ExtResource("4_hh6jr")
+text = "Instructions:
+
+Use the arrow buttons to move the cow!
+
+Puny Lactose intolerant humans are moving around, press the mouse button to shoot them and eliminate the intolerants!
+
+Beware, every shot of milk drains your reservoir, eat grass to refill!"
+autowrap_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

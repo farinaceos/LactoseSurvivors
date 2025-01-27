@@ -9,7 +9,6 @@ const SPEED = 100.0
 var run = false
 
 func _physics_process(delta: float) -> void:
-	print(run)
 	if run:
 		var direction = global_position.direction_to(player.global_position)
 		#velocity = (direction) * SPEED 				#DEBUG USE
@@ -27,6 +26,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	
 func _on_tree_exited() -> void:
 	GameManager.score += 1
+	if randf() > drop_rate:
+		print("drop")
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	run = true
