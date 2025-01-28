@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0oe4b7pcr8dm"]
+
+[ext_resource type="Script" path="res://SCRIPTS/grass.gd" id="1_y73mf"]
+[ext_resource type="Texture2D" uid="uid://db1gr6l1ma0kb" path="res://ASSETS/GRASS/grmaa.png" id="2_7q6bl"]
+[ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_ma1rx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv2mm"]
+size = Vector2(20, 34)
+
+[node name="grass" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_y73mf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.2)
+position = Vector2(33, 68)
+scale = Vector2(0.8125, 0.226563)
+texture = ExtResource("2_ma1rx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_7q6bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33, 53)
+shape = SubResource("RectangleShape2D_dv2mm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

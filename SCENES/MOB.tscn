@@ -1,7 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://cntq3ra3cx88h"]
+[gd_scene load_steps=13 format=3 uid="uid://cntq3ra3cx88h"]
 
 [ext_resource type="Script" path="res://SCRIPTS/mob.gd" id="1_psp1h"]
+[ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_2eqnv"]
 [ext_resource type="Texture2D" uid="uid://cpss3fwoubefs" path="res://ASSETS/MOB/THETHE.PNG" id="2_frbx0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rp5yf"]
+radius = 19.0
+height = 116.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqfry"]
+radius = 391.216
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2vnf"]
 atlas = ExtResource("2_frbx0")
@@ -64,26 +72,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rp5yf"]
-radius = 19.0
-height = 116.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_uqfry"]
-radius = 391.216
-
 [node name="Mob" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_psp1h")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4.00002, 3.99998)
-scale = Vector2(0.304, 0.304)
-sprite_frames = SubResource("SpriteFrames_j68dw")
-animation = &"DAMAGE"
-autoplay = "WALKING"
-frame = 3
-frame_progress = 1.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.223529)
+position = Vector2(2.38419e-07, 72)
+scale = Vector2(0.875, 0.289063)
+texture = ExtResource("2_2eqnv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 2
@@ -97,7 +95,14 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_uqfry")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.00002, 3.99998)
+scale = Vector2(0.304, 0.304)
+sprite_frames = SubResource("SpriteFrames_j68dw")
+animation = &"WALKING"
+autoplay = "WALKING"
+
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -56,10 +56,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("SHOOT"):
 		print('atirei')
 		shoot()
-	
-	if Input.is_action_just_pressed("HEAL"):
-		heal()
-	
+
 func shoot():
 	const BULLET = preload("res://SCENES/milk.tscn")
 	var new_bullet = BULLET.instantiate()
@@ -67,10 +64,9 @@ func shoot():
 	new_bullet.global_position = shoot_marker.global_position
 	new_bullet.global_rotation = facing_direction.angle()
 	new_bullet.direction = facing_direction
-	
 	# FILHO DA PUTA!!!! SEMPRE USA O GET_PARENT CACETE!!!! PERDEU DIAS NESSA BURRICE!!!
 	get_parent().add_child(new_bullet)
-	
+
 func heal():
 	health += heal_value
 	if max_health < health:

@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsy5q0mcw1b7i"]
+[gd_scene load_steps=8 format=3 uid="uid://bsy5q0mcw1b7i"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GAME_MANAGER.gd" id="1_71s0l"]
 [ext_resource type="Script" path="res://SCRIPTS/game.gd" id="1_suo8h"]
 [ext_resource type="PackedScene" uid="uid://bqrljrj5s0yy6" path="res://SCENES/COW.tscn" id="2_rwtxa"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="4_f1ine"]
 [ext_resource type="Script" path="res://SCENES/Endscore.gd" id="5_467qx"]
+[ext_resource type="Script" path="res://SCENES/timerLabel.gd" id="6_k08n1"]
 
 [sub_resource type="Curve2D" id="Curve2D_y6k7m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -153, -175, 0, 0, 0, 0, 1398, -175, 0, 0, 0, 0, 1392, 795, 0, 0, 0, 0, -151, 811, 0, 0, 0, 0, -153, -175)
+"points": PackedVector2Array(0, 0, 0, 0, -132.109, -165.42, 0, 0, 0, 0, 1398, -175, 0, 0, 0, 0, 1392, 795, 0, 0, 0, 0, -151, 811, 0, 0, 0, 0, -153, -175)
 }
 point_count = 5
 
@@ -19,6 +20,10 @@ script = ExtResource("1_suo8h")
 script = ExtResource("1_71s0l")
 
 [node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DROP_SpawnTimer" type="Timer" parent="."]
+wait_time = 15.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -40,7 +45,30 @@ curve = SubResource("Curve2D_y6k7m")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
 unique_name_in_owner = true
-position = Vector2(-153, -175)
+position = Vector2(-132.109, -165.42)
+rotation = -0.00626091
+
+[node name="DROP_Path2D2" type="Path2D" parent="Player"]
+position = Vector2(-598.476, -343.706)
+scale = Vector2(1.03611, 1.05882)
+curve = SubResource("Curve2D_y6k7m")
+
+[node name="DROP_PathFollow2D" type="PathFollow2D" parent="Player/DROP_Path2D2"]
+unique_name_in_owner = true
+position = Vector2(-132.109, -165.42)
+rotation = -0.00626091
+
+[node name="Label" type="Label" parent="Player"]
+offset_left = 121.0
+offset_top = -286.0
+offset_right = 524.0
+offset_bottom = -219.0
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 31
+text = "TIME REMAINING 
+%% SECONDS"
+horizontal_alignment = 1
+script = ExtResource("6_k08n1")
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -81,10 +109,10 @@ script = ExtResource("5_467qx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
 layout_mode = 0
-offset_left = 953.0
-offset_top = 625.0
-offset_right = 1235.0
-offset_bottom = 742.0
+offset_left = 942.0
+offset_top = 553.0
+offset_right = 1228.0
+offset_bottom = 734.0
 alignment = 1
 
 [node name="RESTART" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
@@ -93,14 +121,28 @@ theme_override_fonts/font = ExtResource("4_f1ine")
 theme_override_font_sizes/font_size = 36
 text = "RESTART"
 
+[node name="MENU" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "MENU"
+
 [node name="QUIT" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_f1ine")
 theme_override_font_sizes/font_size = 36
 text = "QUIT"
 
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 60.0
+autostart = true
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="Player" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="DROP_SpawnTimer" to="." method="_on_drop_spawn_timer_timeout"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/MENU" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

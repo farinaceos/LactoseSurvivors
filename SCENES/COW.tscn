@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://bqrljrj5s0yy6"]
+[gd_scene load_steps=31 format=3 uid="uid://bqrljrj5s0yy6"]
 
 [ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
+[ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_wuclg"]
 [ext_resource type="Texture2D" uid="uid://pr5ru3upcnvs" path="res://ASSETS/COW/HICOWRI.PNG" id="6_icsqt"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="9_5ci8t"]
 [ext_resource type="PackedScene" uid="uid://c37evdrrbd8bq" path="res://SCENES/shooting_aux.tscn" id="9_n4u0w"]
@@ -211,7 +212,14 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_ulg0c")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.290196)
+position = Vector2(0, 36)
+scale = Vector2(1, 0.328125)
+texture = ExtResource("2_wuclg")
+
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 3
 position = Vector2(-3, 1)
 zoom = Vector2(1.02, 1.02)
 
@@ -253,7 +261,6 @@ shape = SubResource("RectangleShape2D_vgsgx")
 position = Vector2(0, -6)
 scale = Vector2(0.196937, 0.196937)
 sprite_frames = SubResource("SpriteFrames_dngp8")
-animation = &"LOW_BACK"
+animation = &"IDLE"
 autoplay = "IDLE"
-frame_progress = 0.0647648
 flip_h = true

@@ -3,8 +3,9 @@ extends CharacterBody2D
 @onready var player = $"../Player"
 @onready var GM = $"/root/GameManager"
 
+const DROP = preload("res://SCENES/grass.tscn")
 var health = 3
-var drop_rate = 0.8
+var drop_rate = 0.7
 const SPEED = 100.0
 var run = false
 
@@ -26,7 +27,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	
 func _on_tree_exited() -> void:
 	GameManager.score += 1
-	if randf() > drop_rate:
+	var drop_chance = randf()
+	if drop_chance > drop_rate:
+		var new_grass = DROP.instantiate()
+		new_grass.global_position = $".".global_position
+		player.get_parent().add_child(new_grass)
 		print("drop")
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:

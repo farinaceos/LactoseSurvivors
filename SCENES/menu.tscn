@@ -28,6 +28,7 @@ animations = [{
 }]
 
 [node name="Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +36,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fejqv")
+metadata/_edit_horizontal_guides_ = [133.0]
+metadata/_edit_vertical_guides_ = [576.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -43,7 +46,7 @@ offset_bottom = 648.0
 color = Color(0.0291649, 0.251366, 0.152611, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(186, 190)
+position = Vector2(173.199, 170.75)
 scale = Vector2(0.551, 0.551)
 sprite_frames = SubResource("SpriteFrames_g7yle")
 animation = &"1"
@@ -51,7 +54,7 @@ autoplay = "1"
 frame_progress = 0.739475
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(987, 190)
+position = Vector2(975, 169)
 scale = Vector2(0.551, 0.551)
 sprite_frames = SubResource("SpriteFrames_g7yle")
 animation = &"1"
@@ -61,10 +64,10 @@ flip_h = true
 
 [node name="Lactose" type="Label" parent="."]
 layout_mode = 0
-offset_left = 321.0
-offset_top = 83.0
-offset_right = 853.0
-offset_bottom = 160.0
+offset_left = 310.199
+offset_top = 91.75
+offset_right = 842.199
+offset_bottom = 168.75
 theme_override_fonts/font = ExtResource("3_er7i2")
 theme_override_font_sizes/font_size = 76
 text = "LACTOSE"
@@ -73,6 +76,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Fighters" type="Label" parent="Lactose"]
+layout_mode = 0
 offset_left = 34.0
 offset_top = 94.0
 offset_right = 504.0
@@ -114,19 +118,22 @@ text = "Game by Farinaceos - 2025
 for the 1st 2025 PirateSoftware Itch.io Gamejam
 Art and sprites by @mary.gats"
 
-[node name="Assinatura2" type="Label" parent="."]
-offset_left = 49.0
-offset_top = 348.0
-offset_right = 442.0
-offset_bottom = 566.0
+[node name="INSTRUCTIONS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 307.0
+offset_right = 429.0
+offset_bottom = 627.0
 theme_override_fonts/font = ExtResource("4_hh6jr")
 text = "Instructions:
 
 Use the arrow buttons to move the cow!
 
-Puny Lactose intolerant humans are moving around, press the mouse button to shoot them and eliminate the intolerants!
+Puny Lactose intolerant humans are moving around, press the mouse button or space bar to shoot them and eliminate the intolerants!
 
-Beware, every shot of milk drains your reservoir, eat grass to refill!"
+Beware, every shot of milk drains your reservoir, eat grass to refill!
+
+You have 60 seconds to punish as much humans as you can"
 autowrap_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
