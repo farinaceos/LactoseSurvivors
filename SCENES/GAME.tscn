@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsy5q0mcw1b7i"]
+[gd_scene load_steps=10 format=3 uid="uid://bsy5q0mcw1b7i"]
 
 [ext_resource type="Script" path="res://SCRIPTS/GAME_MANAGER.gd" id="1_71s0l"]
 [ext_resource type="Script" path="res://SCRIPTS/game.gd" id="1_suo8h"]
 [ext_resource type="PackedScene" uid="uid://bqrljrj5s0yy6" path="res://SCENES/COW.tscn" id="2_rwtxa"]
+[ext_resource type="Texture2D" uid="uid://dvard6n0sh14b" path="res://ASSETS/PATTERN.JPG" id="3_jdky2"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="4_f1ine"]
 [ext_resource type="Script" path="res://SCENES/Endscore.gd" id="5_467qx"]
 [ext_resource type="Script" path="res://SCENES/timerLabel.gd" id="6_k08n1"]
+[ext_resource type="PackedScene" uid="uid://befvmwhsndpag" path="res://SCENES/obstacle.tscn" id="7_r2vka"]
 
 [sub_resource type="Curve2D" id="Curve2D_y6k7m"]
 _data = {
@@ -15,6 +17,14 @@ point_count = 5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_suo8h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -13372.0
+offset_top = -8149.0
+offset_right = 14300.0
+offset_bottom = 8583.0
+texture = ExtResource("3_jdky2")
+stretch_mode = 1
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_71s0l")
@@ -26,15 +36,12 @@ autostart = true
 wait_time = 15.0
 autostart = true
 
+[node name="OBSTACLE_SpawnTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -3
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -85.0
-offset_top = -99.0
-offset_right = 1260.0
-offset_bottom = 737.0
-color = Color(0.305882, 0.568627, 0.243137, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_rwtxa")]
 position = Vector2(575, 324)
@@ -49,7 +56,7 @@ position = Vector2(-132.109, -165.42)
 rotation = -0.00626091
 
 [node name="DROP_Path2D2" type="Path2D" parent="Player"]
-position = Vector2(-598.476, -343.706)
+position = Vector2(-604, -341)
 scale = Vector2(1.03611, 1.05882)
 curve = SubResource("Curve2D_y6k7m")
 
@@ -138,9 +145,25 @@ unique_name_in_owner = true
 wait_time = 60.0
 autostart = true
 
+[node name="Obstacle" parent="." instance=ExtResource("7_r2vka")]
+position = Vector2(230, 294)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 12
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+light_mask = 15
+visibility_layer = 31
+position = Vector2(1287, 6392.21)
+scale = Vector2(1, 1.80301)
+polygon = PackedVector2Array(-14708, -8051.64, 12954, -8039.44, 12937, 1202.31, -14646, 1223.39, -14648, -8178.1, -14480, -8198.06, -14475, 1118.01, 12766, 1075.86, 12783, -7881.37, -14732, -7898.56)
+one_way_collision_margin = 3.3
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="Player" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="DROP_SpawnTimer" to="." method="_on_drop_spawn_timer_timeout"]
+[connection signal="timeout" from="OBSTACLE_SpawnTimer" to="." method="_on_obstacle_spawn_timer_timeout"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/RESTART" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/MENU" to="." method="_on_menu_pressed"]

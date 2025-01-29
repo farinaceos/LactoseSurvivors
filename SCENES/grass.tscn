@@ -1,11 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0oe4b7pcr8dm"]
+[gd_scene load_steps=7 format=3 uid="uid://c0oe4b7pcr8dm"]
 
 [ext_resource type="Script" path="res://SCRIPTS/grass.gd" id="1_y73mf"]
-[ext_resource type="Texture2D" uid="uid://db1gr6l1ma0kb" path="res://ASSETS/GRASS/grmaa.png" id="2_7q6bl"]
 [ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_ma1rx"]
+[ext_resource type="Texture2D" uid="uid://efkixlkdlns0" path="res://ASSETS/MIXED_ASSETS.PNG" id="3_7uby6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83iby"]
+atlas = ExtResource("3_7uby6")
+region = Rect2(120, 0, 496, 776)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4646t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83iby")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dv2mm"]
-size = Vector2(20, 34)
+size = Vector2(36, 45)
 
 [node name="grass" type="Area2D"]
 collision_layer = 0
@@ -18,13 +33,13 @@ position = Vector2(33, 68)
 scale = Vector2(0.8125, 0.226563)
 texture = ExtResource("2_ma1rx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_7q6bl")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(35, 24)
+scale = Vector2(0.124503, 0.124503)
+sprite_frames = SubResource("SpriteFrames_4646t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(33, 53)
+position = Vector2(35, 47.5)
 shape = SubResource("RectangleShape2D_dv2mm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

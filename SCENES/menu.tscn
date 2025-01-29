@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://jsqltluk8kt3"]
+[gd_scene load_steps=12 format=3 uid="uid://jsqltluk8kt3"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_fejqv"]
+[ext_resource type="Texture2D" uid="uid://sssp68ewurb1" path="res://ASSETS/BACKGROUND.JPG" id="2_hbefy"]
 [ext_resource type="Texture2D" uid="uid://pr5ru3upcnvs" path="res://ASSETS/COW/HICOWRI.PNG" id="2_uvrlu"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="3_er7i2"]
 [ext_resource type="FontFile" uid="uid://cnhcrcpgqgrq0" path="res://ASSETS/fonts/PixelOperator8.ttf" id="4_hh6jr"]
+[ext_resource type="Texture2D" uid="uid://dre0qouorwa51" path="res://ASSETS/LOGO.PNG" id="6_3sx8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tccqr"]
 atlas = ExtResource("2_uvrlu")
@@ -27,6 +29,21 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uayxi"]
+atlas = ExtResource("6_3sx8h")
+region = Rect2(0, 0, 1767, 1115)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sjr0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uayxi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Menu" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -39,53 +56,19 @@ script = ExtResource("1_fejqv")
 metadata/_edit_horizontal_guides_ = [133.0]
 metadata/_edit_vertical_guides_ = [576.0]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.0291649, 0.251366, 0.152611, 1)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(173.199, 170.75)
-scale = Vector2(0.551, 0.551)
-sprite_frames = SubResource("SpriteFrames_g7yle")
-animation = &"1"
-autoplay = "1"
-frame_progress = 0.739475
+[node name="BACKGROUND" type="Sprite2D" parent="."]
+position = Vector2(577, 337)
+scale = Vector2(0.792, 0.792)
+texture = ExtResource("2_hbefy")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(975, 169)
+position = Vector2(983, 409)
 scale = Vector2(0.551, 0.551)
 sprite_frames = SubResource("SpriteFrames_g7yle")
 animation = &"1"
 autoplay = "1"
 frame_progress = 0.636868
 flip_h = true
-
-[node name="Lactose" type="Label" parent="."]
-layout_mode = 0
-offset_left = 310.199
-offset_top = 91.75
-offset_right = 842.199
-offset_bottom = 168.75
-theme_override_fonts/font = ExtResource("3_er7i2")
-theme_override_font_sizes/font_size = 76
-text = "LACTOSE"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Fighters" type="Label" parent="Lactose"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 94.0
-offset_right = 504.0
-offset_bottom = 171.0
-theme_override_fonts/font = ExtResource("3_er7i2")
-theme_override_font_sizes/font_size = 61
-text = "Fighters"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -135,6 +118,11 @@ Beware, every shot of milk drains your reservoir, eat grass to refill!
 
 You have 60 seconds to punish as much humans as you can"
 autowrap_mode = 2
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(588, 167)
+scale = Vector2(0.363117, 0.363117)
+sprite_frames = SubResource("SpriteFrames_0sjr0")
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

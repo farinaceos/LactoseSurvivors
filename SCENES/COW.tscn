@@ -209,7 +209,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_ulg0c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

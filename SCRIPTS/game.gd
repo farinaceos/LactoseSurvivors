@@ -7,6 +7,12 @@ func _ready() -> void:
 	get_tree().paused = false
 	GameManager.score = 0
 
+func spawn_stone():
+	var new_stone = preload("res://SCENES/obstacle.tscn").instantiate()
+	%DROP_PathFollow2D.progress_ratio = randf()
+	new_stone.global_position = %DROP_PathFollow2D.global_position
+	add_child(new_stone)
+
 func spawn_mob():
 	var new_mob = preload("res://SCENES/MOB.tscn").instantiate()
 	%PathFollow2D.progress_ratio = randf()
@@ -47,6 +53,11 @@ func _on_drop_spawn_timer_timeout() -> void:
 func _on_timer_timeout() -> void:
 	%GameOver.visible = true
 	get_tree().paused = true
+	
+func _on_obstacle_spawn_timer_timeout() -> void:
+	print("LIKE A ROLLING STONE!")
+	spawn_stone()
+	
 	
 #func setTime():
 	#print(str(%Timer.wait_time))
