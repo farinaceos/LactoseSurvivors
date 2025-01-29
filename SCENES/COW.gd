@@ -56,6 +56,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("SHOOT"):
 		print('atirei')
 		shoot()
+		
+	if Input.is_action_just_pressed("PAUSE"):
+		print("PAUSE")
+		%Pause.visible = true
+		get_tree().paused = true
+		
 
 func shoot():
 	const BULLET = preload("res://SCENES/milk.tscn")

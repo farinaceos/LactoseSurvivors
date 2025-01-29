@@ -4,9 +4,9 @@ extends Node2D
 # var TimerControl = %Timer.wait_time
 
 func _ready() -> void:
-	get_tree().paused = false
+	get_tree().paused = true
 	GameManager.score = 0
-
+	
 func spawn_stone():
 	var new_stone = preload("res://SCENES/obstacle.tscn").instantiate()
 	%DROP_PathFollow2D.progress_ratio = randf()
@@ -31,6 +31,14 @@ func _on_spawn_timer_timeout() -> void:
 func _on_player_health_depleted() -> void:
 	%GameOver.visible = true
 	get_tree().paused = true
+	
+
+
+func _on_continue_pressed() -> void:
+	%Pause.visible = false
+	if %INSTRUCTIONS.visible:
+		%INSTRUCTIONS.visible = false
+	get_tree().paused = false
 	
 
 func _on_restart_pressed() -> void:

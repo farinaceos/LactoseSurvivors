@@ -18,6 +18,60 @@ point_count = 5
 [node name="Game" type="Node2D"]
 script = ExtResource("1_suo8h")
 
+[node name="INSTRUCTIONS" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="INSTRUCTIONS"]
+offset_left = -90.0
+offset_top = -94.0
+offset_right = 1259.0
+offset_bottom = 734.0
+color = Color(0.211765, 0.203922, 0.188235, 0.839216)
+
+[node name="HowToPlay" type="Label" parent="INSTRUCTIONS/ColorRect"]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 136.0
+offset_right = 1772.0
+offset_bottom = 318.0
+scale = Vector2(0.599918, 0.599918)
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 101
+text = "How To Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="INSTRUCTIONS/ColorRect"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 301.0
+offset_right = 1023.0
+offset_bottom = 903.0
+scale = Vector2(0.697255, 0.697255)
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 51
+text = "Press W A S D or the Arrows to move around
+
+Press ESC to pause
+
+Left Mouse Button  or Space Shoots milk in your facing direction!"
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="INSTRUCTIONS/ColorRect"]
+layout_mode = 0
+offset_left = 942.0
+offset_top = 553.0
+offset_right = 1228.0
+offset_bottom = 734.0
+alignment = 1
+
+[node name="CONTINUE" type="Button" parent="INSTRUCTIONS/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "CONTINUE"
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -13372.0
 offset_top = -8149.0
@@ -44,7 +98,7 @@ autostart = true
 layer = -3
 
 [node name="Player" parent="." instance=ExtResource("2_rwtxa")]
-position = Vector2(575, 324)
+position = Vector2(588, 327)
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-575, -324)
@@ -140,13 +194,69 @@ theme_override_fonts/font = ExtResource("4_f1ine")
 theme_override_font_sizes/font_size = 36
 text = "QUIT"
 
+[node name="Pause" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="Pause"]
+offset_left = -90.0
+offset_top = -94.0
+offset_right = 1259.0
+offset_bottom = 734.0
+color = Color(0.211765, 0.203922, 0.188235, 0.686275)
+
+[node name="GameOver" type="Label" parent="Pause/ColorRect2"]
+layout_mode = 0
+offset_left = -95.0
+offset_top = 175.0
+offset_right = 1466.0
+offset_bottom = 357.0
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 101
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/ColorRect2"]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 496.0
+offset_right = 832.0
+offset_bottom = 677.0
+alignment = 1
+
+[node name="CONTINUE" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "CONTINUE"
+
+[node name="RESTART" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "RESTART"
+
+[node name="MENU" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "MENU"
+
+[node name="QUIT" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_font_sizes/font_size = 36
+text = "QUIT"
+
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 60.0
 autostart = true
 
 [node name="Obstacle" parent="." instance=ExtResource("7_r2vka")]
-position = Vector2(230, 294)
+position = Vector2(227, 298)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 12
@@ -160,6 +270,7 @@ scale = Vector2(1, 1.80301)
 polygon = PackedVector2Array(-14708, -8051.64, 12954, -8039.44, 12937, 1202.31, -14646, 1223.39, -14648, -8178.1, -14480, -8198.06, -14475, 1118.01, 12766, 1075.86, 12783, -7881.37, -14732, -7898.56)
 one_way_collision_margin = 3.3
 
+[connection signal="pressed" from="INSTRUCTIONS/ColorRect/VBoxContainer/CONTINUE" to="." method="_on_continue_pressed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="Player" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="DROP_SpawnTimer" to="." method="_on_drop_spawn_timer_timeout"]
@@ -168,4 +279,8 @@ one_way_collision_margin = 3.3
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/RESTART" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/MENU" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Pause/ColorRect2/VBoxContainer/CONTINUE" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Pause/ColorRect2/VBoxContainer/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Pause/ColorRect2/VBoxContainer/MENU" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Pause/ColorRect2/VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
