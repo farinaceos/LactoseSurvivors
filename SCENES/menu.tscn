@@ -99,7 +99,7 @@ offset_bottom = 638.0
 theme_override_fonts/font = ExtResource("4_hh6jr")
 text = "Game by Farinaceos - 2025
 for the 1st 2025 PirateSoftware Itch.io Gamejam
-Art and sprites by @mary.gats"
+Art and sprites by @mary.gats                 v. b0.3"
 
 [node name="INSTRUCTIONS" type="Label" parent="."]
 layout_mode = 0
