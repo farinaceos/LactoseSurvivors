@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c68qlaufk7088"]
+[gd_scene load_steps=6 format=3 uid="uid://c68qlaufk7088"]
 
 [ext_resource type="Script" path="res://SCENES/options.gd" id="1_gnben"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="1_nr34r"]
+[ext_resource type="Texture2D" uid="uid://dmkm3r2m3mm1a" path="res://ASSETS/IMG_0060.PNG" id="2_dc51o"]
 [ext_resource type="FontFile" uid="uid://cnhcrcpgqgrq0" path="res://ASSETS/fonts/PixelOperator8.ttf" id="2_v7jg8"]
 [ext_resource type="Script" path="res://SCENES/button.gd" id="4_7idbh"]
 
@@ -15,60 +16,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gnben")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = -16.0
-offset_top = -14.0
-offset_right = 1169.0
-offset_bottom = 664.0
-color = Color(0.370364, 0.370364, 0.370364, 1)
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_left = 108.0
-offset_top = 188.0
-offset_right = 424.0
-offset_bottom = 211.0
-theme_override_fonts/font = ExtResource("2_v7jg8")
-text = "Set Timer for the session"
+[node name="BACKGROUND" type="Sprite2D" parent="."]
+position = Vector2(577, 337)
+scale = Vector2(0.792, 0.792)
+texture = ExtResource("2_dc51o")
 
 [node name="TITLE" type="Label" parent="."]
 layout_mode = 2
-offset_left = 361.0
-offset_top = 20.0
-offset_right = 773.0
-offset_bottom = 82.0
+offset_left = 378.0
+offset_top = 41.0
+offset_right = 790.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_nr34r")
 theme_override_font_sizes/font_size = 61
 text = "OPTIONS"
 uppercase = true
 
-[node name="Label3" type="Label" parent="."]
-layout_mode = 2
-offset_left = 756.0
-offset_top = 226.0
-offset_right = 1072.0
-offset_bottom = 249.0
-theme_override_fonts/font = ExtResource("2_v7jg8")
-text = "Volume"
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 2
-offset_left = 350.0
-offset_top = 484.0
-offset_right = 460.0
-offset_bottom = 507.0
-theme_override_fonts/font = ExtResource("2_v7jg8")
-text = "Standard"
-
 [node name="TIMER_OPTIONS" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 211.0
-offset_right = 464.0
-offset_bottom = 597.0
-theme_override_constants/separation = 65
+offset_left = 42.0
+offset_top = 264.0
+offset_right = 457.0
+offset_bottom = 642.0
+tooltip_text = "Set the time for the Game Over Timer of the game session."
+theme_override_constants/separation = 46
 alignment = 1
+
+[node name="Label" type="Label" parent="TIMER_OPTIONS"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v7jg8")
+theme_override_font_sizes/font_size = 21
+text = "Set Timer for the session"
 
 [node name="Button30" type="Button" parent="TIMER_OPTIONS"]
 layout_mode = 2
@@ -99,33 +78,61 @@ theme_override_font_sizes/font_size = 31
 text = "90 Seconds"
 autowrap_mode = 2
 
-[node name="HSlider" type="HSlider" parent="."]
-layout_mode = 2
-offset_left = 724.0
-offset_top = 249.0
-offset_right = 982.0
-offset_bottom = 266.0
-scale = Vector2(1.45304, 1.51203)
-localize_numeral_system = false
-value = 50.0
-tick_count = 5
-ticks_on_borders = true
-
-[node name="BACK" type="VBoxContainer" parent="."]
+[node name="Corner_Buttons" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 808.0
-offset_top = 476.0
-offset_right = 1048.0
-offset_bottom = 549.0
+offset_left = 863.0
+offset_top = 518.0
+offset_right = 1103.0
+offset_bottom = 591.0
 
-[node name="Button" type="Button" parent="BACK"]
+[node name="Back" type="Button" parent="Corner_Buttons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_nr34r")
 theme_override_font_sizes/font_size = 41
 text = "BACK"
 
+[node name="Credits" type="Button" parent="Corner_Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_nr34r")
+text = "CREDITS"
+
+[node name="HSlider" type="HSlider" parent="."]
+modulate = Color(0.960784, 1, 1, 1)
+layout_mode = 2
+offset_left = 683.0
+offset_top = 285.0
+offset_right = 940.925
+offset_bottom = 311.245
+scale = Vector2(1.621, 1.992)
+localize_numeral_system = false
+value = 50.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label3" type="Label" parent="HSlider"]
+layout_mode = 2
+offset_left = 3.7014
+offset_top = -16.5663
+offset_right = 319.701
+offset_bottom = 6.43373
+theme_override_fonts/font = ExtResource("2_v7jg8")
+text = "Volume"
+
+[node name="CheckBox" type="CheckBox" parent="HSlider"]
+layout_mode = 0
+offset_left = 2.46761
+offset_top = 35.6426
+offset_right = 26.4676
+offset_bottom = 59.6426
+theme_override_fonts/font = ExtResource("2_v7jg8")
+text = "Mute"
+
 [connection signal="pressed" from="TIMER_OPTIONS/Button30" to="." method="_on_button_30_pressed"]
 [connection signal="pressed" from="TIMER_OPTIONS/Button45" to="." method="_on_button_45_pressed"]
+[connection signal="pressed" from="TIMER_OPTIONS/Button60" to="." method="_on_button_60_pressed"]
+[connection signal="pressed" from="TIMER_OPTIONS/Button90" to="." method="_on_button_90_pressed"]
+[connection signal="pressed" from="Corner_Buttons/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Corner_Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="pressed" from="BACK/Button" to="." method="_on_button_pressed"]
+[connection signal="toggled" from="HSlider/CheckBox" to="." method="_on_check_box_toggled"]

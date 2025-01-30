@@ -34,5 +34,5 @@ shape = SubResource("CircleShape2D_qslvo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot"]
 position = Vector2(94, -4)
-scale = Vector2(0.263628, 0.263628)
+scale = Vector2(0.16297, 0.16297)
 sprite_frames = SubResource("SpriteFrames_3mjoa")

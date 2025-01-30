@@ -1,13 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsy5q0mcw1b7i"]
+[gd_scene load_steps=9 format=3 uid="uid://bsy5q0mcw1b7i"]
 
-[ext_resource type="Script" path="res://SCRIPTS/GAME_MANAGER.gd" id="1_71s0l"]
-[ext_resource type="Script" path="res://SCRIPTS/game.gd" id="1_suo8h"]
-[ext_resource type="PackedScene" uid="uid://bqrljrj5s0yy6" path="res://SCENES/COW.tscn" id="2_rwtxa"]
-[ext_resource type="Texture2D" uid="uid://dvard6n0sh14b" path="res://ASSETS/PATTERN.JPG" id="3_jdky2"]
-[ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="4_f1ine"]
-[ext_resource type="Script" path="res://SCENES/Endscore.gd" id="5_467qx"]
-[ext_resource type="Script" path="res://SCENES/timerLabel.gd" id="6_k08n1"]
-[ext_resource type="PackedScene" uid="uid://befvmwhsndpag" path="res://SCENES/obstacle.tscn" id="7_r2vka"]
+[ext_resource type="Script" path="res://SCRIPTS/game.gd" id="1_dbbmt"]
+[ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="2_pujoj"]
+[ext_resource type="Texture2D" uid="uid://dbugm60y7xh30" path="res://ASSETS/GrassPattern.PNG" id="3_va6rd"]
+[ext_resource type="PackedScene" uid="uid://bqrljrj5s0yy6" path="res://SCENES/COW.tscn" id="5_iwyc0"]
+[ext_resource type="Script" path="res://SCENES/timerLabel.gd" id="6_og3v1"]
+[ext_resource type="Script" path="res://SCENES/Endscore.gd" id="7_601rg"]
+[ext_resource type="PackedScene" uid="uid://befvmwhsndpag" path="res://SCENES/obstacle.tscn" id="8_tyly5"]
 
 [sub_resource type="Curve2D" id="Curve2D_y6k7m"]
 _data = {
@@ -15,8 +14,8 @@ _data = {
 }
 point_count = 5
 
-[node name="Game" type="Node2D"]
-script = ExtResource("1_suo8h")
+[node name="game" type="Node2D"]
+script = ExtResource("1_dbbmt")
 
 [node name="INSTRUCTIONS" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -36,7 +35,7 @@ offset_top = 136.0
 offset_right = 1772.0
 offset_bottom = 318.0
 scale = Vector2(0.599918, 0.599918)
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 101
 text = "How To Play"
 horizontal_alignment = 1
@@ -49,7 +48,7 @@ offset_top = 301.0
 offset_right = 1023.0
 offset_bottom = 903.0
 scale = Vector2(0.697255, 0.697255)
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 51
 text = "Press W A S D or the Arrows to move around
 
@@ -68,7 +67,7 @@ alignment = 1
 
 [node name="CONTINUE" type="Button" parent="INSTRUCTIONS/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "CONTINUE"
 
@@ -77,11 +76,8 @@ offset_left = -13372.0
 offset_top = -8149.0
 offset_right = 14300.0
 offset_bottom = 8583.0
-texture = ExtResource("3_jdky2")
+texture = ExtResource("3_va6rd")
 stretch_mode = 1
-
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_71s0l")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
@@ -97,7 +93,7 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -3
 
-[node name="Player" parent="." instance=ExtResource("2_rwtxa")]
+[node name="Player" parent="." instance=ExtResource("5_iwyc0")]
 position = Vector2(588, 327)
 
 [node name="Path2D" type="Path2D" parent="Player"]
@@ -120,16 +116,17 @@ position = Vector2(-132.109, -165.42)
 rotation = -0.00626091
 
 [node name="Label" type="Label" parent="Player"]
-offset_left = 121.0
-offset_top = -286.0
-offset_right = 524.0
-offset_bottom = -219.0
-theme_override_fonts/font = ExtResource("4_f1ine")
+offset_left = 94.0
+offset_top = -203.333
+offset_right = 497.0
+offset_bottom = -136.333
+scale = Vector2(0.645045, 0.645045)
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 31
 text = "TIME REMAINING 
 %% SECONDS"
 horizontal_alignment = 1
-script = ExtResource("6_k08n1")
+script = ExtResource("6_og3v1")
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -149,7 +146,7 @@ offset_left = -95.0
 offset_top = 175.0
 offset_right = 1466.0
 offset_bottom = 357.0
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 101
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -161,12 +158,12 @@ offset_left = 128.0
 offset_top = 485.0
 offset_right = 613.0
 offset_bottom = 647.0
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 51
 text = "YOU SCORED
 %%%
 POINTS"
-script = ExtResource("5_467qx")
+script = ExtResource("7_601rg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
 layout_mode = 0
@@ -178,19 +175,19 @@ alignment = 1
 
 [node name="RESTART" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "RESTART"
 
 [node name="MENU" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "MENU"
 
 [node name="QUIT" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "QUIT"
 
@@ -212,7 +209,7 @@ offset_left = -95.0
 offset_top = 175.0
 offset_right = 1466.0
 offset_bottom = 357.0
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 101
 text = "PAUSE"
 horizontal_alignment = 1
@@ -228,25 +225,25 @@ alignment = 1
 
 [node name="CONTINUE" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "CONTINUE"
 
 [node name="RESTART" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "RESTART"
 
 [node name="MENU" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "MENU"
 
 [node name="QUIT" type="Button" parent="Pause/ColorRect2/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_f1ine")
+theme_override_fonts/font = ExtResource("2_pujoj")
 theme_override_font_sizes/font_size = 36
 text = "QUIT"
 
@@ -255,7 +252,7 @@ unique_name_in_owner = true
 wait_time = 60.0
 autostart = true
 
-[node name="Obstacle" parent="." instance=ExtResource("7_r2vka")]
+[node name="Obstacle" parent="." instance=ExtResource("8_tyly5")]
 position = Vector2(227, 298)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

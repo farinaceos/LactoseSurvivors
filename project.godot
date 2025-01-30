@@ -24,7 +24,7 @@ config/icon="res://ASSETS/COW/icon_25.png"
 [autoload]
 
 GameManager="*res://SCRIPTS/GAME_MANAGER.gd"
-Game="*res://SCENES/GAME.tscn"
+Music="*res://SCENES/Music.tscn"
 
 [display]
 

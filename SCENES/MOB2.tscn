@@ -1,0 +1,144 @@
+[gd_scene load_steps=17 format=3 uid="uid://c8ywhjrpawhkf"]
+
+[ext_resource type="Script" path="res://SCRIPTS/MOB2.gd" id="1_waaww"]
+[ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_svtfs"]
+[ext_resource type="Texture2D" uid="uid://cpss3fwoubefs" path="res://ASSETS/MOB/THETHE.PNG" id="3_6ojnu"]
+[ext_resource type="AudioStream" uid="uid://ctbdofghcm3ad" path="res://ASSETS/MUSIC/ouch-sound-effect-30-11844.mp3" id="4_rhsw5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rp5yf"]
+radius = 19.0
+height = 116.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqfry"]
+radius = 391.216
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2vnf"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(500, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1xdt"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfxem"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(1000, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uresd"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(0, 1500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61diq"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(500, 1500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp82s"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(1000, 1500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01vrx"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2brs"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh81u"]
+atlas = ExtResource("3_6ojnu")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j68dw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2vnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1xdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfxem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1xdt")
+}],
+"loop": false,
+"name": &"DAMAGE",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uresd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61diq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uresd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp82s")
+}],
+"loop": true,
+"name": &"ICE_WALKING",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01vrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2brs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01vrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh81u")
+}],
+"loop": true,
+"name": &"WALKING",
+"speed": 4.0
+}]
+
+[node name="Mob" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_waaww")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.223529)
+position = Vector2(2.38419e-07, 72)
+scale = Vector2(0.875, 0.289063)
+texture = ExtResource("2_svtfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+position = Vector2(3, 15)
+shape = SubResource("CapsuleShape2D_rp5yf")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uqfry")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.00002, 3.99998)
+scale = Vector2(0.304, 0.304)
+sprite_frames = SubResource("SpriteFrames_j68dw")
+animation = &"WALKING"
+autoplay = "WALKING"
+frame_progress = 0.869716
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_rhsw5")
+volume_db = 7.0
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

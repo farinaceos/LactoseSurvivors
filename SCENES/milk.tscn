@@ -1,10 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc6dg5c5it3w6"]
+[gd_scene load_steps=7 format=3 uid="uid://bc6dg5c5it3w6"]
 
 [ext_resource type="Script" path="res://SCRIPTS/milk.gd" id="1_b2mj6"]
 [ext_resource type="Texture2D" uid="uid://dftkbqwsfd68r" path="res://ASSETS/pistol/projectile.png" id="1_u58uv"]
+[ext_resource type="Texture2D" uid="uid://d2nuvknrtfdqd" path="res://ASSETS/COW/IMG_0064 (1).PNG" id="3_b3b7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwgck"]
 radius = 9.05539
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btqny"]
+atlas = ExtResource("3_b3b7q")
+region = Rect2(0, 0, 485, 645)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oe5dh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btqny")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 0
@@ -12,6 +28,7 @@ collision_mask = 3
 script = ExtResource("1_b2mj6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(100, 100, 100, 1)
 position = Vector2(-5.35695, -2.99997)
 scale = Vector2(0.785712, 0.785712)
@@ -23,5 +40,10 @@ light_mask = 0
 visibility_layer = 3
 position = Vector2(4, -2)
 shape = SubResource("CircleShape2D_dwgck")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, -1)
+scale = Vector2(0.104725, 0.104725)
+sprite_frames = SubResource("SpriteFrames_oe5dh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

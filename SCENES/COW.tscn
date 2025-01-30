@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://bqrljrj5s0yy6"]
+[gd_scene load_steps=32 format=3 uid="uid://bqrljrj5s0yy6"]
 
 [ext_resource type="Script" path="res://SCENES/COW.gd" id="1_ulg0c"]
 [ext_resource type="Texture2D" uid="uid://dn80eu1qs371v" path="res://ASSETS/pistol/impact/circle.png" id="2_wuclg"]
 [ext_resource type="Texture2D" uid="uid://pr5ru3upcnvs" path="res://ASSETS/COW/HICOWRI.PNG" id="6_icsqt"]
+[ext_resource type="AudioStream" uid="uid://1ro6xup7846l" path="res://ASSETS/MUSIC/pop-39222.mp3" id="8_x2xyb"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="9_5ci8t"]
 [ext_resource type="PackedScene" uid="uid://c37evdrrbd8bq" path="res://SCENES/shooting_aux.tscn" id="9_n4u0w"]
 [ext_resource type="Script" path="res://SCRIPTS/score.gd" id="10_xiimg"]
@@ -208,6 +209,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_ulg0c")
@@ -225,10 +227,11 @@ zoom = Vector2(1.02, 1.02)
 
 [node name="Score" type="Label" parent="Camera2D"]
 unique_name_in_owner = true
-offset_left = -539.0
-offset_top = -288.0
-offset_right = -171.0
-offset_bottom = -197.0
+offset_left = -350.333
+offset_top = -195.667
+offset_right = 17.6667
+offset_bottom = -104.667
+scale = Vector2(0.615003, 0.615003)
 theme_override_fonts/font = ExtResource("9_5ci8t")
 theme_override_font_sizes/font_size = 37
 text = "% Points"
@@ -252,6 +255,8 @@ allow_greater = true
 allow_lesser = true
 
 [node name="Arrow" parent="." instance=ExtResource("12_y08n8")]
+position = Vector2(-1.33333, 0.666667)
+scale = Vector2(1.00312, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -264,3 +269,7 @@ sprite_frames = SubResource("SpriteFrames_dngp8")
 animation = &"IDLE"
 autoplay = "IDLE"
 flip_h = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_x2xyb")

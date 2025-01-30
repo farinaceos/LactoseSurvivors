@@ -65,6 +65,7 @@ func _physics_process(delta):
 
 func shoot():
 	const BULLET = preload("res://SCENES/milk.tscn")
+	%AudioStreamPlayer2D.play()
 	var new_bullet = BULLET.instantiate()
 	health -= MILK_COST
 	new_bullet.global_position = shoot_marker.global_position

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://2yfykv6qlet7"]
+
+[ext_resource type="AudioStream" uid="uid://5h3n7apgou6i" path="res://ASSETS/MUSIC/irish-dance-199572.mp3" id="1_3excm"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_3excm")
+autoplay = true

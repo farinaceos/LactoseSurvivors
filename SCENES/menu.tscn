@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://jsqltluk8kt3"]
+[gd_scene load_steps=13 format=3 uid="uid://jsqltluk8kt3"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_fejqv"]
-[ext_resource type="Texture2D" uid="uid://sssp68ewurb1" path="res://ASSETS/BACKGROUND.JPG" id="2_hbefy"]
+[ext_resource type="Texture2D" uid="uid://dmkm3r2m3mm1a" path="res://ASSETS/IMG_0060.PNG" id="2_l4qte"]
 [ext_resource type="Texture2D" uid="uid://pr5ru3upcnvs" path="res://ASSETS/COW/HICOWRI.PNG" id="2_uvrlu"]
 [ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="3_er7i2"]
 [ext_resource type="FontFile" uid="uid://cnhcrcpgqgrq0" path="res://ASSETS/fonts/PixelOperator8.ttf" id="4_hh6jr"]
+[ext_resource type="Script" path="res://SCRIPTS/assinatura.gd" id="6_0p8q6"]
 [ext_resource type="Texture2D" uid="uid://dre0qouorwa51" path="res://ASSETS/LOGO.PNG" id="6_3sx8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tccqr"]
@@ -59,7 +60,7 @@ metadata/_edit_vertical_guides_ = [576.0]
 [node name="BACKGROUND" type="Sprite2D" parent="."]
 position = Vector2(577, 337)
 scale = Vector2(0.792, 0.792)
-texture = ExtResource("2_hbefy")
+texture = ExtResource("2_l4qte")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(983, 409)
@@ -72,10 +73,10 @@ flip_h = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 480.0
-offset_top = 328.0
-offset_right = 743.0
-offset_bottom = 563.0
+offset_left = 401.0
+offset_top = 341.0
+offset_right = 753.0
+offset_bottom = 576.0
 alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
@@ -83,6 +84,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_er7i2")
 theme_override_font_sizes/font_size = 51
 text = "START"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_er7i2")
+theme_override_font_sizes/font_size = 51
+text = "OPTIONS"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -92,32 +99,15 @@ text = "QUIT"
 
 [node name="Assinatura" type="Label" parent="."]
 layout_mode = 0
-offset_left = 540.0
-offset_top = 584.0
-offset_right = 1144.0
-offset_bottom = 638.0
+offset_left = 14.0
+offset_top = 590.0
+offset_right = 625.0
+offset_bottom = 644.0
 theme_override_fonts/font = ExtResource("4_hh6jr")
 text = "Game by Farinaceos - 2025
 for the 1st 2025 PirateSoftware Itch.io Gamejam
 Art and sprites by @mary.gats                 v. b0.3"
-
-[node name="INSTRUCTIONS" type="Label" parent="."]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 307.0
-offset_right = 429.0
-offset_bottom = 627.0
-theme_override_fonts/font = ExtResource("4_hh6jr")
-text = "Instructions:
-
-Use the arrow buttons to move the cow!
-
-Puny Lactose intolerant humans are moving around, press the mouse button or space bar to shoot them and eliminate the intolerants!
-
-Beware, every shot of milk drains your reservoir, eat grass to refill!
-
-You have 60 seconds to punish as much humans as you can"
-autowrap_mode = 2
+script = ExtResource("6_0p8q6")
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
 position = Vector2(588, 167)
@@ -125,4 +115,5 @@ scale = Vector2(0.363117, 0.363117)
 sprite_frames = SubResource("SpriteFrames_0sjr0")
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

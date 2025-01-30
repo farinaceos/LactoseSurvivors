@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 func take_damage():
 	health -= 1
 	$AnimatedSprite2D.play("DAMAGE")
+	%AudioStreamPlayer2D.play()
 	if health == 0:
 		queue_free()
 		

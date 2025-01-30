@@ -1,0 +1,186 @@
+[gd_scene load_steps=13 format=3 uid="uid://dqs8sep7sl2fx"]
+
+[ext_resource type="Script" path="res://SCRIPTS/credits.gd" id="1_pn4mo"]
+[ext_resource type="FontFile" uid="uid://iakbob10ex5" path="res://ASSETS/fonts/PixelOperator8-Bold.ttf" id="2_47070"]
+[ext_resource type="Texture2D" uid="uid://dmkm3r2m3mm1a" path="res://ASSETS/IMG_0060.PNG" id="2_pmwte"]
+[ext_resource type="FontFile" uid="uid://cnhcrcpgqgrq0" path="res://ASSETS/fonts/PixelOperator8.ttf" id="3_o8iex"]
+[ext_resource type="Texture2D" uid="uid://cxafiwv57hdc0" path="res://ASSETS/MOB/IMG_0068.PNG" id="5_56oeb"]
+[ext_resource type="Texture2D" uid="uid://pr5ru3upcnvs" path="res://ASSETS/COW/HICOWRI.PNG" id="5_ksxtk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtmjo"]
+atlas = ExtResource("5_56oeb")
+region = Rect2(0, 0, 800, 1266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj4ng"]
+atlas = ExtResource("5_56oeb")
+region = Rect2(800, 0, 800, 1266)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhaon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtmjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj4ng")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31jn8"]
+atlas = ExtResource("5_ksxtk")
+region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddr35"]
+atlas = ExtResource("5_ksxtk")
+region = Rect2(1500, 500, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7kbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31jn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddr35")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="CREDITS" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_pn4mo")
+
+[node name="BACKGROUND" type="Sprite2D" parent="."]
+position = Vector2(577, 337)
+scale = Vector2(0.792, 0.792)
+texture = ExtResource("2_pmwte")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 48.0
+offset_top = 291.0
+offset_right = 327.0
+offset_bottom = 645.0
+color = Color(0, 0, 0, 0.2)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 399.0
+offset_top = 292.0
+offset_right = 690.0
+offset_bottom = 646.0
+color = Color(0, 0, 0, 0.2)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 705.0
+offset_top = 122.0
+offset_right = 1122.0
+offset_bottom = 505.0
+color = Color(0, 0, 0, 0.2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 55.0
+offset_top = 172.0
+offset_right = 327.0
+offset_bottom = 639.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_47070")
+theme_override_font_sizes/font_size = 33
+text = "Designer"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_o8iex")
+text = "MaryGats
+
+More than a decade of experience as a Graphic Designer
+Never had the oportunity to work in a game before
+Every single part of this game is just as it is because she is amazing!
+
+Check her Behance on the Description, really!"
+autowrap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+position = Vector2(103, 14)
+scale = Vector2(0.182913, 0.182913)
+sprite_frames = SubResource("SpriteFrames_vhaon")
+autoplay = "default"
+frame_progress = 0.844902
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+offset_left = 403.0
+offset_top = 170.0
+offset_right = 700.0
+offset_bottom = 637.0
+alignment = 2
+
+[node name="DEV" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_47070")
+theme_override_font_sizes/font_size = 33
+text = "Dev"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer2"]
+position = Vector2(118, 7)
+scale = Vector2(0.478, 0.478)
+sprite_frames = SubResource("SpriteFrames_y7kbt")
+autoplay = "default"
+frame_progress = 0.961892
+
+[node name="Label2" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_o8iex")
+text = "Farinaceos
+
+Started learning GameDev  after a friend insisted
+Kept learning GameDev because IT'S SO FUN!
+Lactose Survivors is it's second ever project, first from scratch.
+
+First GameJam
+
+and Definitely not the last..."
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 714.0
+offset_top = 137.0
+offset_right = 1141.0
+offset_bottom = 510.0
+theme_override_fonts/font = ExtResource("3_o8iex")
+text = "Game Testers
+
+Kah 'Quynha'
+Pedasilva
+Mardô
+YOL
+MaryG
+
+
+Based on the Incredible Ideas of
+Mardô
+MaryG
+
+Many thanks to
+Thor 'PirateSoftware'
+Brackeys
+GDQuest
+
+and you"
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+offset_left = 931.0
+offset_top = 575.0
+offset_right = 1123.0
+offset_bottom = 639.0
+theme_override_fonts/font = ExtResource("2_47070")
+theme_override_font_sizes/font_size = 46
+text = "BACK"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

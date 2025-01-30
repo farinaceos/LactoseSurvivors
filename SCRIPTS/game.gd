@@ -1,11 +1,14 @@
 extends Node2D
 
 @onready var player = $Player
+@onready var GameOverTimer = %Timer
 # var TimerControl = %Timer.wait_time
 
 func _ready() -> void:
+	GameOverTimer.wait_time = GameManager.TimerControl
 	get_tree().paused = true
 	GameManager.score = 0
+	GameOverTimer.start()
 	
 func spawn_stone():
 	var new_stone = preload("res://SCENES/obstacle.tscn").instantiate()
@@ -14,11 +17,18 @@ func spawn_stone():
 	add_child(new_stone)
 
 func spawn_mob():
-	var new_mob = preload("res://SCENES/MOB.tscn").instantiate()
-	%PathFollow2D.progress_ratio = randf()
-	new_mob.global_position = %PathFollow2D.global_position
-	add_child(new_mob)
-	
+	print(randf())
+	if randf() > 0.3:
+		var new_mob = preload("res://SCENES/MOB.tscn").instantiate()
+		%PathFollow2D.progress_ratio = randf()
+		new_mob.global_position = %PathFollow2D.global_position
+		add_child(new_mob)
+	else:
+		var new_mob = preload("res://SCENES/MOB2.tscn").instantiate()
+		%PathFollow2D.progress_ratio = randf()
+		new_mob.global_position = %PathFollow2D.global_position
+		add_child(new_mob)
+
 func drop_grass():
 	var new_grass = preload("res://SCENES/grass.tscn").instantiate()
 	%DROP_PathFollow2D.progress_ratio = randf()
@@ -66,9 +76,3 @@ func _on_obstacle_spawn_timer_timeout() -> void:
 	print("LIKE A ROLLING STONE!")
 	spawn_stone()
 	
-	
-#func setTime():
-	#print(str(%Timer.wait_time))
-	#TimerControl = newTime
-	#%Timer.wait_time = float(TimerControl)
-	#print("New Timer = " + str(%Timer.wait_time) + " segundos")

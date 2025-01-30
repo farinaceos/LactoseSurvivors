@@ -1,13 +1,17 @@
 extends Node
 
-@onready var game = preload("res://SCENES/GAME.tscn")
+@onready var game = preload("res://SCENES/game.tscn")
 
 # Score
 var score = 0
 var highScore = 0
-
+var Version = "V gj1.0" #Just a Gimmick to center versions =)
 # Volume Control
 var VolumeControl
+
+# TIMER CONTROL LETS TRY!
+var TimerControl = 60 #Standard
+# Comment, IT FRICKING WORKED!!!
 
 # Mobs Values
 var mobMaxHealth = 3
@@ -22,6 +26,14 @@ func add_score(points: int):
 	
 # Function to fix music volume - Not working yet
 func setVolume(newVolume):
+	AudioServer.set_bus_volume_db(0,newVolume/4 - 20)
 	VolumeControl = newVolume
-	print("Novo Volume = " + str(VolumeControl) + "%")
-	pass
+	print("Novo Volume = " + str(AudioServer.get_bus_volume_db(0)) + "%")
+	
+func setTime(newTimer):
+	TimerControl = newTimer
+	print("Novo Timer = " + str(TimerControl))
+
+func muteVolume(toggled_on):
+	AudioServer.set_bus_mute(0,toggled_on)
+	print("MUTE IS "+ str(toggled_on))
