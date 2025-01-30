@@ -30,8 +30,10 @@ func _physics_process(delta):
 		shoot_marker.position.x = -abs(shoot_marker.position.x)  # Set to the left side
 	elif direction.y > 0:
 		facing_direction = Vector2.DOWN
+		shoot_marker.position.x = abs(vaca.position.x)
 	elif direction.y < 0:
 		facing_direction = Vector2.UP
+		shoot_marker.position.x = abs(vaca.position.x)
 
 	# Update animations
 	if direction.y < 0:
