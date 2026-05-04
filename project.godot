@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="LactoseSurvivors"
@@ -18,7 +22,7 @@ Made in two weeks with the theme \"You are the weapon\"
 config/version="0.1"
 config/tags=PackedStringArray("2d", "gamejam", "shooter")
 run/main_scene="res://SCENES/menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://ASSETS/COW/icon_25.png"
 
 [autoload]

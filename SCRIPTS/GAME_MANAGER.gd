@@ -1,6 +1,6 @@
 extends Node
 
-@onready var game = preload("res://SCENES/game.tscn")
+@onready var game = preload("res://SCENES/GAME.tscn")
 
 # Score
 var score = 0
